@@ -18,7 +18,7 @@ class BillController extends Controller
     private function validateRequest(Request $request)
     {
         return $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:bills,name,' . $request->id,
         ]);
     }
 
