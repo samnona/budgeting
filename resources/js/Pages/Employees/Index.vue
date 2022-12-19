@@ -38,6 +38,7 @@ const isEdit = ref(false);
 const editableData = reactive({});
 const edit = (params) => {
     isEdit.value = true;
+    form.errors = {};
     accountMondal.value = true;
     form.id = params.id;
     form.name = params.name;

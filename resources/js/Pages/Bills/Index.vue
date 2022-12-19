@@ -30,6 +30,7 @@ const billModal = ref(false);
 const isEdit = ref(false);
 const editableData = reactive({});
 const edit = (params) => {
+    form.errors = {};
     isEdit.value = true;
     billModal.value = true;
     form.id = params.id;

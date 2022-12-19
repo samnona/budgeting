@@ -18,7 +18,7 @@ class EmployeeController extends Controller
     private function validateRequest(Request $request)
     {
         return $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:users,name,' . $request->id,
             'status' => 'required|boolean'
         ]);
     }
