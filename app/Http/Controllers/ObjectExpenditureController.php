@@ -22,13 +22,14 @@ class ObjectExpenditureController extends Controller
             'account_code' => 'required|string|unique:object_expenditures,account_code,' . $request->id,
             'budget' => 'required|numeric',
             'balance' => 'nullable|numeric',
-            'year' => 'required'
+            'year' => 'nullable'
         ]);
     }
 
     public function store(Request $request)
     {
         $validated = $this->validateRequest($request);
+        $validated['year'] =  $request->input('year', now()->format('Y'));
         $validated['balance'] =  $request->budget;
 
         ObjectExpenditure::query()->create($validated);

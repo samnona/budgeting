@@ -71,7 +71,9 @@ const expenditureModal = ref(false);
 
 const yearValue = ref("");
 function submitForm() {
-    form.year = dayjs(yearValue.value).format("YYYY");
+    form.year = yearValue.value
+        ? dayjs(yearValue.value).format("YYYY")
+        : undefined;
     form.post(route("object-expenditures.store"), {
         preserveScroll: false,
         onSuccess: () => {

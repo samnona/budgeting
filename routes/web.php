@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AppropraitionController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ObjectExpenditureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Appropriation;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -42,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('employees', EmployeeController::class);
     Route::resource('bills', BillController::class);
     Route::resource('object-expenditures', ObjectExpenditureController::class);
+    Route::resource('appropriations', AppropraitionController::class);
 });
 
+// Route::get('test', function () {
+//     return Appropriation::query()->with(['user', 'bill', 'objectExpenditure'])->get();
+// });
 require __DIR__ . '/auth.php';

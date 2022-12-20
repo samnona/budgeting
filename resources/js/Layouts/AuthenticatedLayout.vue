@@ -59,6 +59,14 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Expenditures
                                 </NavLink>
+                                <NavLink
+                                    :href="route('appropriations.index')"
+                                    :active="
+                                        route().current('appropriations.index')
+                                    "
+                                >
+                                    Appropriation
+                                </NavLink>
                             </div>
                         </div>
 
