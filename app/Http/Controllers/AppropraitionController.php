@@ -38,15 +38,16 @@ class AppropraitionController extends Controller
 
     public function store(Request $request)
     {
+
+        $validated = $this->validateRequest($request);
+
         $objectExpenditure = ObjectExpenditure::query()->firstWhere('id', $request->object_expenditure_id);
 
         if ($request->expense >  $objectExpenditure->balance) {
             throw ValidationException::withMessages([
-                'expense' => 'The balance now is low',
+                'expense' => 'Insufficient balance',
             ]);
         }
-
-        $validated = $this->validateRequest($request);
 
         Appropriation::query()->create($validated);
 
