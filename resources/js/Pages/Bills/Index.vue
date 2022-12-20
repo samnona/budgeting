@@ -45,7 +45,7 @@ function submitForm() {
             billModal.value = false;
             form.reset();
             notification.success({
-                message: "Bill Created Successfully",
+                message: "Utility Created Successfully",
             });
         },
     });
@@ -56,7 +56,7 @@ function handleDelete(params) {
         preserveScroll: false,
         onSuccess: () => {
             notification.success({
-                message: "Bill Deleted Successfully",
+                message: "Utility Deleted Successfully",
             });
         },
     });
@@ -69,7 +69,7 @@ function hanldeEdit() {
             isEdit.value = false;
             billModal.value = false;
             notification.success({
-                message: "Bill Updated Successfully",
+                message: "Utility Updated Successfully",
             });
         },
     });
@@ -91,11 +91,11 @@ function handleShowModal() {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <a-card
                     class="overflow-hidden shadow-sm sm:rounded-lg"
-                    title="Bills"
+                    title="Utilities"
                 >
                     <template #extra>
                         <a-button type="primary" @click="handleShowModal"
-                            >Add Bill</a-button
+                            >Add Utility</a-button
                         >
                     </template>
                     <a-table :columns="columns" :data-source="bills" bordered>
@@ -126,7 +126,7 @@ function handleShowModal() {
                 <a-modal
                     :maskClosable="true"
                     v-model:visible="billModal"
-                    :title="isEdit ? 'Update Bill' : 'Create Bill'"
+                    :title="isEdit ? 'Update Utility' : 'Create Utility'"
                 >
                     <template #footer>
                         <a-button key="back" @click="billModal = false"

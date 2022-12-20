@@ -199,8 +199,8 @@ function handleChangeType(event) {
                                     :options="[
                                         { label: 'payee', value: 'payee' },
                                         {
-                                            label: 'utitility',
-                                            value: 'utitility',
+                                            label: 'utility',
+                                            value: 'utility',
                                         },
                                     ]"
                                 ></a-select>
