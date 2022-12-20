@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ObjectExpenditureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('employees', EmployeeController::class);
     Route::resource('bills', BillController::class);
+    Route::resource('object-expenditures', ObjectExpenditureController::class);
 });
 
 require __DIR__ . '/auth.php';

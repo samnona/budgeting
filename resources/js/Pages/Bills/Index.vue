@@ -18,6 +18,7 @@ const columns = [
     {
         title: "operation",
         dataIndex: "operation",
+        width: "1%",
     },
 ];
 

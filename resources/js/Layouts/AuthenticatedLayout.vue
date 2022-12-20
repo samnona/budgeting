@@ -49,6 +49,16 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Bills
                                 </NavLink>
+                                <NavLink
+                                    :href="route('object-expenditures.index')"
+                                    :active="
+                                        route().current(
+                                            'object-expenditures.index'
+                                        )
+                                    "
+                                >
+                                    Expenditures
+                                </NavLink>
                             </div>
                         </div>
 
