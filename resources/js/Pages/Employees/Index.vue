@@ -179,6 +179,7 @@ function handleShowModal() {
                                     errors?.status ? 'error' : null
                                 "
                                 :help="errors?.status"
+                                v-if="isEdit"
                             >
                                 <a-switch v-model:checked="form.status" />
                             </a-form-item>
