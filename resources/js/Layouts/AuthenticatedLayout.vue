@@ -25,8 +25,8 @@ const showingNavigationDropdown = ref(false);
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     /> -->
                                     <span class="text-lg font-bold">
-                                        Asuncion Budgeting Inventory</span
-                                    >
+                                        Office Budgeting
+                                    </span>
                                 </Link>
                             </div>
 

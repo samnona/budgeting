@@ -10,9 +10,7 @@ import { Link } from "@inertiajs/inertia-vue3";
         <div>
             <Link href="/">
                 <!-- <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" /> -->
-                <span class="text-3xl font-bold">
-                    Asuncion Budgeting Inventory</span
-                >
+                <span class="text-3xl font-bold"> Office Budgeting </span>
             </Link>
         </div>
 

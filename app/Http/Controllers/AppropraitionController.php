@@ -28,7 +28,7 @@ class AppropraitionController extends Controller
     private function validateRequest(Request $request)
     {
         return $request->validate([
-            'type' => 'required|string|in:employee,utitility',
+            'type' => 'required|string|in:employee,utility',
             'user_id' => ['nullable', 'exists:users,id', Rule::requiredIf($request->type === 'employee')],
             'bill_id' => ['nullable', 'exists:bills,id', Rule::requiredIf($request->type === 'utitility')],
             'object_expenditure_id' => ['required', 'exists:object_expenditures,id'],
