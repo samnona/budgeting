@@ -27,6 +27,13 @@ class Appropriation extends Model
                 ->where('id', $appropriation->object_expenditure_id)
                 ->decrement('balance', $appropriation->expense);
         });
+
+        self::deleted(function (Appropriation $appropriation) {
+
+            ObjectExpenditure::query()
+                ->where('id', $appropriation->object_expenditure_id)
+                ->increment('balance', $appropriation->expense);
+        });
     }
 
     public function user()
