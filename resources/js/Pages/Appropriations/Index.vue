@@ -46,7 +46,7 @@ const columns = [
 
 const form = useForm({
     id: "",
-    type: "payee",
+    type: "employee",
     user_id: "",
     bill_id: "",
     object_expenditure_id: "",
@@ -185,7 +185,7 @@ function handleChangeType(event) {
                     <div>
                         <a-form layout="vertical" class="w-full">
                             <a-form-item
-                                label="Type"
+                                label="Payee"
                                 :validate-status="
                                     form.errors.type ? 'error' : null
                                 "
@@ -194,10 +194,13 @@ function handleChangeType(event) {
                                 <a-select
                                     @change="handleChangeType($event)"
                                     v-model:value="form.type"
-                                    placeholder="Select a type"
+                                    placeholder="Select a payee"
                                     style="width: 100%"
                                     :options="[
-                                        { label: 'payee', value: 'payee' },
+                                        {
+                                            label: 'employee',
+                                            value: 'employee',
+                                        },
                                         {
                                             label: 'utility',
                                             value: 'utility',
@@ -206,7 +209,7 @@ function handleChangeType(event) {
                                 ></a-select>
                             </a-form-item>
                             <a-form-item
-                                v-if="form.type === 'payee'"
+                                v-if="form.type === 'employee'"
                                 label="User"
                                 :validate-status="
                                     form.errors.user_id ? 'error' : null

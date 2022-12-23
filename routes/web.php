@@ -7,6 +7,7 @@ use App\Http\Controllers\ObjectExpenditureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\Appropriation;
+use App\Models\ObjectExpenditure;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,7 +33,10 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'total-budget' => ObjectExpenditure::query()->sum('budget'),
+        'balance' => ObjectExpenditure::query()->sum('balance')
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
