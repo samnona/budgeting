@@ -3,8 +3,10 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 import { cloneDeep } from "lodash-es";
 import { notification } from "ant-design-vue";
-import { defineComponent, reactive, ref, watch } from "vue";
+import { computed, defineComponent, reactive, ref, watch } from "vue";
 import dayjs from "dayjs";
+import { watchDebounced } from "@vueuse/shared";
+import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
     object_expenditures: Array,
@@ -116,6 +118,48 @@ function handleShowModal() {
     form.reset();
     form.errors = {};
 }
+
+const search = ref("");
+watchDebounced(
+    search,
+    () => {
+        pagination.value.current = 1;
+        Inertia.get(
+            window.location.pathname,
+            { search: search.value },
+            {
+                preserveScroll: true,
+                replace: true,
+                preserveState: true,
+            }
+        );
+    },
+    {
+        debounce: 300,
+    }
+);
+
+const pagination = computed(() => ({
+    total: props.object_expenditures.total,
+    current: props.object_expenditures.current_page,
+    pageSize: props.object_expenditures.per_page,
+    showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+    showSizeChanger: false,
+}));
+
+function handleTableChange(event) {
+    Inertia.get(
+        window.location.pathname,
+        {
+            search: search.value,
+            page: event.current,
+        },
+        {
+            replace: true,
+            preserveState: true,
+        }
+    );
+}
 </script>
 
 <template>
@@ -129,14 +173,23 @@ function handleShowModal() {
                     title="Expenditures"
                 >
                     <template #extra>
-                        <a-button type="primary" @click="handleShowModal"
-                            >Add Expenditure</a-button
-                        >
+                        <div class="space-x-4">
+                            <a-input-search
+                                placeholder="Search Employee"
+                                style="width: 200px"
+                                v-model:value="search"
+                            />
+                            <a-button type="primary" @click="handleShowModal"
+                                >Add Expenditure</a-button
+                            >
+                        </div>
                     </template>
                     <a-table
                         :columns="columns"
-                        :data-source="object_expenditures"
+                        :data-source="object_expenditures.data"
                         bordered
+                        :pagination="pagination"
+                        @change="handleTableChange"
                     >
                         <template #bodyCell="{ column, text, record }">
                             <template

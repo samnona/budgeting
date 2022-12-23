@@ -13,12 +13,13 @@ use Inertia\Inertia;
 
 class AppropraitionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Appropriations/Index', [
-            'appropriation' => Appropriation::query()
+            'appropriations' => Appropriation::query()
                 ->with(['user', 'bill', 'objectExpenditure'])
-                ->get(),
+                ->search($request->search)
+                ->paginate(),
             'users' => User::query()->whereNot('id', auth()->user()->id)->get(),
             'bills' => Bill::query()->get(),
             'object_expenditures' => ObjectExpenditure::query()->get()

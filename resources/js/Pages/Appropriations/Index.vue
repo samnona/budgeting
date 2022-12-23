@@ -3,11 +3,13 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 import { cloneDeep } from "lodash-es";
 import { notification } from "ant-design-vue";
-import { defineComponent, reactive, ref, watch } from "vue";
+import { computed, defineComponent, reactive, ref, watch } from "vue";
 import dayjs from "dayjs";
+import { Inertia } from "@inertiajs/inertia";
+import { watchDebounced } from "@vueuse/shared";
 
 const props = defineProps({
-    appropriation: Array,
+    appropriations: Array,
     users: Array,
     bills: Array,
     object_expenditures: Array,
@@ -117,6 +119,48 @@ function handleChangeType(event) {
     form.user_id = "";
     form.bill_id = "";
 }
+
+const search = ref("");
+watchDebounced(
+    search,
+    () => {
+        pagination.value.current = 1;
+        Inertia.get(
+            window.location.pathname,
+            { search: search.value },
+            {
+                preserveScroll: true,
+                replace: true,
+                preserveState: true,
+            }
+        );
+    },
+    {
+        debounce: 300,
+    }
+);
+
+const pagination = computed(() => ({
+    total: props.appropriations.total,
+    current: props.appropriations.current_page,
+    pageSize: props.appropriations.per_page,
+    showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+    showSizeChanger: false,
+}));
+
+function handleTableChange(event) {
+    Inertia.get(
+        window.location.pathname,
+        {
+            search: search.value,
+            page: event.current,
+        },
+        {
+            replace: true,
+            preserveState: true,
+        }
+    );
+}
 </script>
 
 <template>
@@ -130,14 +174,23 @@ function handleChangeType(event) {
                     title="Appropriations"
                 >
                     <template #extra>
-                        <a-button type="primary" @click="handleShowModal"
-                            >Add
-                        </a-button>
+                        <div class="space-x-4">
+                            <a-input-search
+                                placeholder="Search Employee"
+                                style="width: 200px"
+                                v-model:value="search"
+                            />
+                            <a-button type="primary" @click="handleShowModal"
+                                >Add
+                            </a-button>
+                        </div>
                     </template>
                     <a-table
                         :columns="columns"
-                        :data-source="appropriation"
+                        :data-source="appropriations.data"
                         bordered
+                        :pagination="pagination"
+                        @change="handleTableChange"
                     >
                         <template #bodyCell="{ column, text, record }">
                             <template

@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\WithSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Appropriation extends Model
 {
-    use HasFactory;
+    use HasFactory, WithSearch;
 
     protected $guarded = [];
+
+    protected $searchable = [
+        'user.name',
+        'bill.name',
+        'objectExpenditure.expenditures'
+    ];
 
 
     public static function booted()

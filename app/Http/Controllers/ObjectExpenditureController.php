@@ -8,10 +8,12 @@ use Inertia\Inertia;
 
 class ObjectExpenditureController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('ObjectExpenditures/Index', [
-            'object_expenditures' => ObjectExpenditure::query()->get()
+            'object_expenditures' => ObjectExpenditure::query()
+                ->search($request->search)
+                ->paginate()
         ]);
     }
 

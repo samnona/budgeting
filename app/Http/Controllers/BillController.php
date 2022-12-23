@@ -8,10 +8,12 @@ use Inertia\Inertia;
 
 class BillController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Bills/Index', [
-            'bills' => Bill::query()->get()
+            'bills' => Bill::query()
+                ->search($request->search)
+                ->paginate()
         ]);
     }
 

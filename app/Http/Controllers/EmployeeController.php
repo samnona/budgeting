@@ -8,10 +8,13 @@ use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Employees/Index', [
-            'employees' => User::query()->whereNot('id', auth()->user()->id)->get()
+            'employees' => User::query()
+                ->whereNot('id', auth()->user()->id)
+                ->search($request->search)
+                ->paginate()
         ]);
     }
 
