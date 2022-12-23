@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('users', UserController::class);
     Route::resource('employees', EmployeeController::class);
-    Route::resource('bills', BillController::class);
+    Route::resource('utilities', BillController::class);
     Route::resource('expenditures', ObjectExpenditureController::class);
     Route::resource('appropriations', AppropraitionController::class);
 });

@@ -47,8 +47,8 @@ const showingNavigationDropdown = ref(false);
                                     Employees
                                 </NavLink>
                                 <NavLink
-                                    :href="route('bills.index')"
-                                    :active="route().current('bills.index')"
+                                    :href="route('utilities.index')"
+                                    :active="route().current('utilities.index')"
                                 >
                                     Utilities
                                 </NavLink>

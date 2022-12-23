@@ -76,7 +76,7 @@ function submitForm() {
     form.year = yearValue.value
         ? dayjs(yearValue.value).format("YYYY")
         : undefined;
-    form.post(route("object-expenditures.store"), {
+    form.post(route("expenditures.store"), {
         preserveScroll: false,
         onSuccess: () => {
             expenditureModal.value = false;
@@ -89,7 +89,7 @@ function submitForm() {
 }
 
 function handleDelete(params) {
-    form.delete(route("object-expenditures.destroy", params), {
+    form.delete(route("expenditures.destroy", params), {
         preserveScroll: false,
         onSuccess: () => {
             notification.success({
@@ -100,7 +100,7 @@ function handleDelete(params) {
 }
 
 // function hanldeEdit() {
-//     form.put(route("object-expenditures.update", form.id), {
+//     form.put(route("expenditures.update", form.id), {
 //         preserveScroll: false,
 //         onSuccess: () => {
 //             isEdit.value = false;

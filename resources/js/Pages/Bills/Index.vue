@@ -41,7 +41,7 @@ const edit = (params) => {
 };
 
 function submitForm() {
-    form.post(route("bills.store"), {
+    form.post(route("utilities.store"), {
         preserveScroll: false,
         onSuccess: () => {
             billModal.value = false;
@@ -54,7 +54,7 @@ function submitForm() {
 }
 
 function handleDelete(params) {
-    form.delete(route("bills.destroy", params), {
+    form.delete(route("utilities.destroy", params), {
         preserveScroll: false,
         onSuccess: () => {
             notification.success({
@@ -65,7 +65,7 @@ function handleDelete(params) {
 }
 
 function hanldeEdit() {
-    form.put(route("bills.update", form.id), {
+    form.put(route("utilities.update", form.id), {
         preserveScroll: false,
         onSuccess: () => {
             isEdit.value = false;
