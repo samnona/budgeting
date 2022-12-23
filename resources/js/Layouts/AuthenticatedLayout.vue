@@ -53,11 +53,9 @@ const showingNavigationDropdown = ref(false);
                                     Utilities
                                 </NavLink>
                                 <NavLink
-                                    :href="route('object-expenditures.index')"
+                                    :href="route('expenditures.index')"
                                     :active="
-                                        route().current(
-                                            'object-expenditures.index'
-                                        )
+                                        route().current('expenditures.index')
                                     "
                                 >
                                     Expenditures
