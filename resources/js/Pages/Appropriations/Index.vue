@@ -16,22 +16,23 @@ const props = defineProps({
 });
 const columns = [
     {
+        title: "Expenditure",
+        dataIndex: ["object_expenditure", "expenditures"],
+        width: "25%",
+        key: "expenditures",
+    },
+
+    {
         title: "Appropriation",
         dataIndex: "appropriation",
         width: "25%",
         key: "appropriation",
     },
     {
-        title: "Expenditure",
-        dataIndex: ["object_expenditure", "expenditures"],
+        title: "Account Code",
+        dataIndex: ["object_expenditure", "account_code"],
         width: "25%",
-        key: "expenditures",
-    },
-    {
-        title: "Type",
-        dataIndex: "type",
-        width: "25%",
-        key: "type",
+        key: "account_code",
     },
     {
         title: "Expense",
