@@ -50,7 +50,7 @@ const showingNavigationDropdown = ref(false);
                                     :href="route('bills.index')"
                                     :active="route().current('bills.index')"
                                 >
-                                    Utility
+                                    Utilities
                                 </NavLink>
                                 <NavLink
                                     :href="route('object-expenditures.index')"

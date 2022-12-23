@@ -163,7 +163,7 @@ function handleTableChange(event) {
 </script>
 
 <template>
-    <Head title="Employees" />
+    <Head title="Expenditures" />
 
     <AuthenticatedLayout>
         <div class="py-12">
@@ -175,7 +175,7 @@ function handleTableChange(event) {
                     <template #extra>
                         <div class="space-x-4">
                             <a-input-search
-                                placeholder="Search Employee"
+                                placeholder="Search Expenditure"
                                 style="width: 200px"
                                 v-model:value="search"
                             />
