@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ObjectExpenditure;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class ObjectExpenditureController extends Controller
@@ -20,7 +21,9 @@ class ObjectExpenditureController extends Controller
     private function validateRequest(Request $request)
     {
         return $request->validate([
-            'expenditures' => 'required|string',
+            'expenditures' => ['required', 'string', Rule::unique('object_expenditures')
+                ->where('year', $request->year)
+                ->ignore($request->id)],
             'account_code' => 'required|string|unique:object_expenditures,account_code,' . $request->id,
             'budget' => 'required|numeric',
             'balance' => 'nullable|numeric',

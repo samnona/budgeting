@@ -22,7 +22,7 @@ const columns = [
         key: "appropriation",
     },
     {
-        title: "Object of expenditure",
+        title: "Expenditure",
         dataIndex: ["object_expenditure", "expenditures"],
         width: "25%",
         key: "expenditures",
@@ -308,7 +308,7 @@ function handleTableChange(event) {
                                 ></a-select>
                             </a-form-item>
                             <a-form-item
-                                label="Object of expenditure"
+                                label="Expenditure"
                                 :validate-status="
                                     form.errors.object_expenditure_id
                                         ? 'error'
