@@ -42,19 +42,19 @@ class ObjectExpenditureController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, ObjectExpenditure $expenditures)
+    public function update(Request $request, ObjectExpenditure $expenditure)
     {
         // $validated = $this->validateRequest($request);
 
-        // $expenditures->fill($validated);
-        // $expenditures->save();
+        // $expenditure->fill($validated);
+        // $expenditures>save();
 
         return redirect()->back();
     }
 
     public function destroy(ObjectExpenditure $expenditure)
     {
-        $expenditures->delete();
+        $expenditure->delete();
 
         return redirect()->back();
     }
