@@ -33,19 +33,19 @@ class BillController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, Bill $bill)
+    public function update(Request $request, Bill $utility)
     {
         $validated = $this->validateRequest($request);
 
-        $bill->fill($validated);
-        $bill->save();
+        $utility->fill($validated);
+        $utility->save();
 
         return redirect()->back();
     }
 
-    public function destroy(Bill $bill)
+    public function destroy(Bill $utility)
     {
-        $bill->delete();
+        $utility->delete();
 
         return redirect()->back();
     }
