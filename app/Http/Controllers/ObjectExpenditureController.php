@@ -25,8 +25,8 @@ class ObjectExpenditureController extends Controller
                 ->where('year', $request->year)
                 ->ignore($request->id)],
             'account_code' => 'required|string|unique:object_expenditures,account_code,' . $request->id,
-            'budget' => 'required|numeric',
-            'balance' => 'nullable|numeric',
+            'budget' => 'required|decimal:2',
+            'balance' => 'nullable|decimal:2',
             'year' => 'nullable'
         ]);
     }
