@@ -51,6 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('appropriations', AppropraitionController::class);
 });
 
+Route::get('test', function () {
+    return request()->ip();
+});
+
 // Route::get('test', function () {
 //     return Appropriation::query()->with(['user', 'bill', 'objectExpenditure'])->get();
 // });
